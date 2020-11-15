@@ -152,7 +152,7 @@ class App extends Component<IProps, IStates> {
         <div className={css.wrapper}>
           <nav className={css.nav}>
               <a onClick={()=>{Router.openPage({page:'ApartmentsPage'})}} >Apartments</a>
-              <a onClick={()=>{Router.openPage({page:'AddApartmentsPage'})}}>Add Apartment</a>
+              <a onClick={()=>{Router.openPage({page:'AddApartmentPage'})}}>Add Apartment</a>
               <a onClick={()=>{Router.openPage({page:'ClientsPage'})}}>Clients</a>
               <a onClick={()=>{Router.openPage({page:'AddClientPage'})}}>Add Client</a>
               <a onClick={()=>{Router.openPage({page:'BookingsPage'})}}>Bookings</a>
