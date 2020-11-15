@@ -1,0 +1,46 @@
+image: flycherami/node-php:7.2
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  LAMP_DEPLOY_BASE: /$DEPLOY_GROUP_NAME/$DEPLOY_PROJECT_NAME/$CI_COMMIT_REF_SLUG
+
+stages:
+  - deploy
+
+deploy_local:
+  stage: deploy
+  script:
+    - npm ci --unsafe-perm
+    - npm run ci:build:local || npm run ci:build
+    - npm run ci:prepare:local || npm run ci:prepare || true
+    - npm run ci:deploy:local || npm run ci:deploy
+  except:
+    - staging
+    - production
+
+deploy_staging:
+  stage: deploy
+  script:
+    - npm ci --unsafe-perm
+    - npm run ci:build:staging || npm run ci:build
+    - npm run ci:prepare:staging || npm run ci:prepare || true
+    - npm run ci:deploy:staging || npm run ci:deploy
+  environment:
+    name: staging
+    url: $APP_URL
+  only:
+    - staging
+
+deploy_production:
+  stage: deploy
+  script:
+    - npm ci --unsafe-perm
+    - npm run ci:build:production || npm run ci:build
+    - npm run ci:prepare:production || npm run ci:prepare || true
+    - npm run ci:deploy:production || npm run ci:deploy
+  environment:
+    name: production
+    url: $APP_URL
+  when: manual
+  only:
+    - production

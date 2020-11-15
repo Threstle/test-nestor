@@ -1,0 +1,73 @@
+@import (reference) "../../references.less";
+
+// ----------------------------------------------------------------------------- CONFIG
+
+@COMPONENT: ApartmentForm;
+
+// ----------------------------------------------------------------------------- BLOCK
+
+.Root {
+  padding: 3%;
+
+}
+
+// ----------------------------------------------------------------------------- ELEMENTS
+
+.form
+{
+  position: relative;
+  display:flex;
+  flex-direction:column
+}
+
+
+label
+{
+  .formLabel();
+}
+
+input
+{
+  .formInput();
+}
+
+.roomBlocks
+{
+  margin-top: 15px;
+}
+
+.roomBlock
+{
+  flex-direction: row;
+  display: flex;
+}
+
+.sectionTitle
+{
+  .smallFormTitle();
+}
+
+.roomDeleteButton
+{
+  margin-right: 10px;
+}
+
+.roomInputs
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons
+{
+  display: flex;
+}
+
+
+// ----------------------------------------------------------------------------- MODIFIERS
+
+// ----------------------------------------------------------------------------- CHILDREN
+
+// ----------------------------------------------------------------------------- PATCHES
+

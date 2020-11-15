@@ -1,0 +1,3 @@
+[submodule "scripts/ci"]
+	path = scripts/ci
+	url = https://glados:oDR4jSdC3fUBxepUzhXt@gitlab.cher-ami.tv/interne/ci-scripts.git
