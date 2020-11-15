@@ -45,7 +45,7 @@ export const routes: IRoute[] = [
         importer: () => require("./pages/bookingPage/BookingPage"),
     },
     {
-        url: "/add-booking/{id}",
+        url: "/add-booking",
         page: "AddBookingPage",
         importer: () => require("./pages/addBookingPage/AddBookingPage"),
     }

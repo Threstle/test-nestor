@@ -8,6 +8,7 @@ import {DEFAULT_BOOKING, DEFAULT_ROOM} from "../../data/DefaultDatas";
 import {IRoom} from "../../data/IRoom";
 import {IClient} from "../../data/IClient";
 import RoomCard from "../../components/roomCard/RoomCard";
+import CustomButton from "../../components/customButton/CustomButton";
 
 interface IProps {
   classNames?: string[];
@@ -22,19 +23,40 @@ const debug = require("debug")(`front:${componentName}`);
 const AddBookingPage = (props: IProps) => {
   // get root ref
   const rootRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const [room,setRoom] = useState<IRoom>(DEFAULT_ROOM);
+  const [rooms,setRooms] = useState<IRoom[]>([]);
   const [clients,setClients] = useState<IClient[]>([])
   // -------------------–-------------------–-------------------–--------------- USE EFFECT
 
     useEffect(()=>{
-        let roomId = Router.currentRouteMatch.parameters.id as string;
 
-        APIManager.instance.getRoom(roomId).then((pRoom)=>{
-            setRoom(pRoom);
+        APIManager.instance.getRooms().then((pRoom)=>{
+            setRooms(pRoom);
+        })
+
+        APIManager.instance.getClients().then((pClients)=>{
+            setClients(pClients);
         })
     },[]);
 
+  // -------------------–-------------------–-------------------–--------------- FUNCTIONS
+
+    const sendForm = ()=>{
+        let formData = new FormData(formRef.current);
+
+        let booking = {};
+        formData.forEach(function(value, key){
+            booking[key] = value;
+        });
+
+        console.log(booking);
+        APIManager.instance.addBooking(booking as IBooking).then((res)=>{
+            console.log(res);
+            Router.openPage({page:"BookingsPage"});
+        })
+
+    };
   // -------------------–-------------------–-------------------–--------------- REGISTER PAGE
 
   /**
@@ -65,13 +87,31 @@ const AddBookingPage = (props: IProps) => {
 
   return (
     <div className={css.Root} ref={rootRef}>
-        <h1 className={css.pageTitle}>Book room n°{room?.number}</h1>
-        <RoomCard data={room}/>
-        <select>
-            {
-
-            }
-        </select>
+        <h1 className={css.pageTitle}>Add Booking</h1>
+        <form ref={formRef} className={css.form}>
+            <label className={css.label}>Client</label>
+            <select name="clientId" className={css.select}>
+                {
+                    clients.map((client,i)=>{
+                        return <option value={client.id}>{client.firstName} {client.lastName}</option>
+                    })
+                }
+            </select>
+            <label className={css.label}>Room</label>
+            <select name="roomId" className={css.select}>
+                {
+                    rooms.map((room,i)=>{
+                        return <option value={room.id}>{room.number} - {room.price} €</option>
+                    })
+                }
+            </select>
+            <div className={css.buttons}>
+                <CustomButton
+                    text={"Submit"}
+                    onClick={sendForm}
+                />
+            </div>
+        </form>
     </div>
   );
 };

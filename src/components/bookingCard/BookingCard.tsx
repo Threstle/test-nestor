@@ -20,7 +20,7 @@ function BookingCard (props: IProps) {
 
   // --------------------------------------------------------------------------- RENDER
 
-  return <div onClick={props.onClick} className={merge([css.Root, props.className])}>
+  return <div onClick={props.onClick} className={merge([css.Root, props.className, props.onClick?css.Root_clickable:""])}>
       <p className={css.title}>Room n°{props.data.room.number} by {props.data.client.firstName} {props.data.client.lastName}</p>
   </div>
 }

@@ -151,11 +151,12 @@ class App extends Component<IProps, IStates> {
       <div className={css.Root}>
         <div className={css.wrapper}>
           <nav className={css.nav}>
-              <a href={Router.generateURL({page:'ApartmentsPage'})}>Apartments</a>
-              <a href={Router.generateURL({page:'AddApartmentPage'})}>Add Apartment</a>
-              <a href={Router.generateURL({page:'ClientsPage'})}>Clients</a>
-              <a href={Router.generateURL({page:'AddClientPage'})}>Add Client</a>
-              <a href={Router.generateURL({page:'BookingsPage'})}>Bookings</a>
+              <a onClick={()=>{Router.openPage({page:'ApartmentsPage'})}} >Apartments</a>
+              <a onClick={()=>{Router.openPage({page:'AddApartmentsPage'})}}>Add Apartment</a>
+              <a onClick={()=>{Router.openPage({page:'ClientsPage'})}}>Clients</a>
+              <a onClick={()=>{Router.openPage({page:'AddClientPage'})}}>Add Client</a>
+              <a onClick={()=>{Router.openPage({page:'BookingsPage'})}}>Bookings</a>
+              <a onClick={()=>{Router.openPage({page:'AddBookingPage'})}}>Add Booking</a>
           </nav>
           <ViewStack
             ref={(r) => (this._viewStack = r)}

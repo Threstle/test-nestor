@@ -8,11 +8,11 @@ import {IClient} from "../data/IClient";
 const API_URL = "https://app-booking-christ.herokuapp.com/api/";
 const API_ENDPOINT_APARTMENTS = `${API_URL}apartment`;
 const API_ENDPOINT_APARTMENT = `${API_URL}apartment/:id`;
-const API_ENDPOINT_ROOMS = `${API_URL}room`;
 const API_ENDPOINT_CLIENTS = `${API_URL}client`;
 const API_ENDPOINT_CLIENT = `${API_URL}client/:id`;
 const API_ENDPOINT_BOOKINGS = `${API_URL}booking`;
 const API_ENDPOINT_BOOKING = `${API_URL}booking/:id`;
+const API_ENDPOINT_ROOMS = `${API_URL}room`;
 const API_ENDPOINT_ROOM = `${API_URL}room/:id`;
 
 export class APIManager {
@@ -42,12 +42,23 @@ export class APIManager {
         return data.booking as IBooking;
     }
 
+    public async addBooking(pBooking:IBooking){
+
+        const response = await fetch(API_ENDPOINT_BOOKINGS,{
+            method:'POST',
+            body:JSON.stringify(pBooking),
+            headers: {'Content-Type': 'application/json'}
+        });
+
+        return await response.json();
+    }
+
     // ----------------------------------------------------------------------------------------------------------------- BOOKINGS
 
-    public async getRoom(pRoomId) {
-        let response = await fetch(API_ENDPOINT_ROOM.replace(':id',pRoomId));
+    public async getRooms() {
+        let response = await fetch(API_ENDPOINT_ROOMS);
         let data = await response.json();
-        return data.booking as IRoom;
+        return data.rooms as IRoom[];
     }
 
     // ----------------------------------------------------------------------------------------------------------------- CLIENTS

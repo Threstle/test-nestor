@@ -69,11 +69,13 @@ const AddClientPage = (props: IProps) => {
         <h1 className={css.pageTitle}>Add client</h1>
         <form ref={formRef} className={css.form}>
             <label>First name</label>
-            <input type="text" name="firstname"/>
+            <input type="text" name="firstName"/>
             <label>Last name</label>
-            <input type="text" name="lastname"/>
+            <input type="text" name="lastName"/>
             <label>Email</label>
             <input type="email" name="email"/>
+            <label>Birthdate</label>
+            <input type="text" name="birthDate"/>
             <label>Phone</label>
             <input type="phone" name="phone"/>
             <label>Nationality</label>

@@ -6,9 +6,40 @@
 
 // ----------------------------------------------------------------------------- BLOCK
 
-.Root { }
+.Root {
+  .page();
+}
 
 // ----------------------------------------------------------------------------- ELEMENTS
+
+.pageTitle
+{
+  .pageTitle();
+}
+
+.label
+{
+  .formLabel();
+}
+
+.form
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.select
+{
+  appearance: initial;
+  border-bottom: solid @pale-blue-color 1px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.buttons
+{
+  display: flex;
+}
 
 // ----------------------------------------------------------------------------- MODIFIERS
 
