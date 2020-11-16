@@ -29,6 +29,8 @@ npm run dev
 
 App is compiled in dist/, code can be found in src/
 
+For a list of available commands :
+
 ```shell script
 $ npm run help
 ```
